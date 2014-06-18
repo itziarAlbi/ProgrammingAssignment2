@@ -1,5 +1,4 @@
-## Put comments here that give an overall description of what your
-## functions do
+#Calculates the inverse of a matrix, using the solve method, and assumming is a square matrix
 
 ## Write a short comment describing this function
 
