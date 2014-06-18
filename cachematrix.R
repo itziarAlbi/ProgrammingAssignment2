@@ -1,27 +1,33 @@
-
-
-## Write a short comment describing this function
-
+##Caches the inverse of a matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-
+		m <- NULL
+        set <- function(y, nRows, nCols) {
+                x <<- matrix(y, nRows, nCols);
+                m <<- NULL
+        }
+        get <- function() x
+        setInverse <- function(solve) m <<- solve
+        getInverse <- function() m
+        list(set = set, get = get,
+             setInverse = setInverse,
+             getInverse = getInverse)
 
 }
-
-
-
 
 #Calculates the inverse of a matrix, using the solve method
 
-
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-		#Is a square matrix ?, so the number of rows is equals to the number of columns
-		nRows <-nrow(x);
-		nCols<-ncol(x);
-		if (nRows == nCols){
-			solve(x);
-		}
-		
-        
+
+			
+        m <- x$getInverse()
+        if(!is.null(m)) {
+                message("getting cached data")
+                return(m)
+        }
+        data <- x$get()
+        m <- solve(data, ...)
+        x$setInverse(m)
+        m
 }
+
